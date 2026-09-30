@@ -63,3 +63,29 @@
 
 - 模板默认预装核心组件库 `shadcn/ui`，位于`src/components/ui/`目录下
 - Next.js 项目**必须默认**采用 shadcn/ui 组件、风格和规范，**除非用户指定用其他的组件和规范。**
+
+## 项目专属说明（绅士漫画官网）
+
+### 页面清单（多页面着陆站）
+| 路由 | 文件 | 说明 |
+| --- | --- | --- |
+| `/` | `src/app/page.tsx` | 首页：Hero / 亮点 / 功能 / 场景 / FAQ / CTA |
+| `/features` | `src/app/features/page.tsx` | 产品功能全览 |
+| `/download` | `src/app/download/page.tsx` | APK 下载地址与四步安装教程 |
+| `/faq` | `src/app/faq/page.tsx` | 常见问题（FAQPage 结构化数据） |
+
+### SEO 与站点配置
+- 站点常量集中在 `src/lib/site.ts`：品牌名、APK 下载地址、百度统计 ID、`getSiteUrl()`。
+- `getSiteUrl()` 优先读 `NEXT_PUBLIC_SITE_URL`（绑定自有域名时配置），否则回退到 `COZE_PROJECT_DOMAIN_DEFAULT`。
+- 标题规范：全站标题品牌词"绅士漫画"前置（layout 中 `title.template = '绅士漫画_%s'`），改标题时不要破坏此前缀。
+- `/robots.txt` 由 `src/app/robots.ts` 生成；`/sitemap.xml` 由 `src/app/sitemap.ts` 生成，新增页面后需同步加入 sitemap。
+- JSON-LD：layout 注入 Organization / WebSite；首页注入 SoftwareApplication + FAQPage + BreadcrumbList；下载页注入 SoftwareApplication；各子页均有 BreadcrumbList。
+- OG 分享图由 `src/app/opengraph-image.tsx`（edge runtime，ImageResponse + 内联 SVG logo）生成。
+- 百度统计组件 `src/components/baidu-analytics.tsx` 仅在 `NODE_ENV=production` 时注入 hm.js。
+
+### 转化按钮规范
+- 全站唯一转化动作组件：`src/components/download-button.tsx`，文案固定"获取下载地址"，外链 APK 直链。
+- 导航链接不属于 CTA；如需调整下载地址，只改 `src/lib/site.ts` 中的 `downloadUrl`。
+
+### 共享文案
+- 功能特性、FAQ、安装步骤数据统一维护在 `src/lib/content.ts`，被多个页面复用，修改文案优先改此处。

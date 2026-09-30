@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="pinkBg" cx="0.38" cy="0.32" r="0.85">
+      <stop offset="0" stop-color="#f45b87"/>
+      <stop offset="1" stop-color="#e03e70"/>
+    </radialGradient>
+  </defs>
+  <circle cx="256" cy="256" r="248" fill="url(#pinkBg)" stroke="#f4b441" stroke-width="8"/>
+  <g fill="#ffffff">
+    <circle cx="168" cy="152" r="37"/>
+    <circle cx="256" cy="110" r="40"/>
+    <circle cx="344" cy="152" r="37"/>
+    <ellipse cx="258" cy="218" rx="80" ry="68"/>
+  </g>
+  <path d="M94 396 L157 296 L223 404 L289 404 L355 296 L418 396" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
